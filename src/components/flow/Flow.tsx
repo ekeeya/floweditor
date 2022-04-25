@@ -354,12 +354,11 @@ export class Flow extends React.PureComponent<FlowStoreProps, {}> {
   private getEmptyFlow(): JSX.Element {
     return (
       <div key="create_node" className={styles.empty_flow}>
-        <Trans i18nKey="empty_flow_message">
-          <h1>Let's get started</h1>
+        <Trans>
+          <h1>Get Started!</h1>
           <div>
-            We recommend starting your flow by sending a message. This message will be sent to
-            anybody right after they join the flow. This is your chance to send a single message or
-            ask them a question.
+            We recommend starting your flow with a <b>Send Message</b> node. The message here will
+            be used to create the first USSD menu on the end user device.
           </div>
         </Trans>
 
@@ -377,7 +376,7 @@ export class Flow extends React.PureComponent<FlowStoreProps, {}> {
     );
   }
 
-  /* 
+  /*
   public componentDidUpdate(prevProps: FlowStoreProps): void {
     traceUpdate(this, prevProps);
   }

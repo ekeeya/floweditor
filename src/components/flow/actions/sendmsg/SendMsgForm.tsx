@@ -12,8 +12,8 @@ import {
 import { ActionFormProps } from 'components/flow/props';
 import AssetSelector from 'components/form/assetselector/AssetSelector';
 import { hasUseableTranslation } from 'components/form/assetselector/helpers';
-import CheckboxElement from 'components/form/checkbox/CheckboxElement';
-import MultiChoiceInput from 'components/form/multichoice/MultiChoice';
+//import CheckboxElement from 'components/form/checkbox/CheckboxElement';
+//import MultiChoiceInput from 'components/form/multichoice/MultiChoice';
 import SelectElement, { SelectOption } from 'components/form/select/SelectElement';
 import TextInputElement from 'components/form/textinput/TextInputElement';
 import TypeList from 'components/nodeeditor/TypeList';
@@ -35,12 +35,13 @@ import { MaxOfTenItems, Required, shouldRequireIf, validate } from 'store/valida
 import { range } from 'utils';
 
 import styles from './SendMsgForm.module.scss';
-import { hasFeature } from 'config/typeConfigs';
-import { FeatureFilter } from 'config/interfaces';
+//import { hasFeature } from 'config/typeConfigs';
+//import { FeatureFilter } from 'config/interfaces';
 
 import i18n from 'config/i18n';
-import { Trans } from 'react-i18next';
-import { Attachment, renderAttachments } from './attachments';
+//import { Trans } from 'react-i18next';
+import { Attachment } from './attachments';
+//import { Attachment, renderAttachments } from './attachments';
 
 export interface SendMsgFormState extends FormState {
   message: StringEntry;
@@ -318,7 +319,7 @@ export default class SendMsgForm extends React.Component<ActionFormProps, SendMs
   public render(): JSX.Element {
     const typeConfig = this.props.typeConfig;
 
-    const quickReplies: Tab = {
+    /*    const quickReplies: Tab = {
       name: i18n.t('forms.quick_replies', 'Quick Replies'),
       body: (
         <>
@@ -372,11 +373,12 @@ export default class SendMsgForm extends React.Component<ActionFormProps, SendMs
         />
       ),
       checked: this.state.sendAll
-    };
+    };*/
 
-    const tabs = [quickReplies, attachments, advanced];
+    //const tabs = [quickReplies, attachments, advanced];
+    const tabs: any[] | Tab[] = [];
 
-    if (hasFeature(this.context.config, FeatureFilter.HAS_WHATSAPP)) {
+    /**if (hasFeature(this.context.config, FeatureFilter.HAS_WHATSAPP)) {
       const templates: Tab = {
         name: 'WhatsApp',
         body: this.renderTemplateConfig(),
@@ -393,7 +395,7 @@ export default class SendMsgForm extends React.Component<ActionFormProps, SendMs
         checked: this.state.topic.value != null
       };
       tabs.splice(0, 0, templates);
-    }
+    }**/
 
     return (
       <Dialog
@@ -405,7 +407,7 @@ export default class SendMsgForm extends React.Component<ActionFormProps, SendMs
         <TypeList __className="" initialType={typeConfig} onChange={this.props.onTypeChange} />
         <TextInputElement
           name={i18n.t('forms.message', 'Message')}
-          showLabel={false}
+          showLabel={true}
           counter=".sms-counter"
           onChange={this.handleMessageUpdate}
           entry={this.state.message}
